@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Home - Smart Gas Agency{% endblock %}
+{% block content %}
+  <section class="hero">
+    <h2>Welcome{% if user %}, {{ user.name }}{% endif %} to Smart Gas Agency</h2>
+    <p>Fast, reliable cylinder booking and management — online.</p>
+    <br>
+    
+    <div class="hero-cta">
+      <a class="btn" href="{{ url_for('services') }}">Our Services</a>
+      <a class="btn" href="{{ url_for('booking') }}">Book Cylinder</a>
+    </div>
+  </section>
+  <br>
+  
+  <section class="features">
+    <h3>Why choose us?</h3>
+    <ul>
+      <li>Quick booking and delivery tracking</li>
+      <li>Secure payments (mock integration)</li>
+      <li>24/7 customer support</li>
+    </ul>
+  </section>
+
+  <section class="latest">
+    <h3>Latest Bookings</h3>
+    {% if session.get('user_id') %}
+      <p><a href="{{ url_for('history') }}">View your booking history</a></p>
+    {% else %}
+      <p><a href="{{ url_for('login') }}">Login</a> or <a href="{{ url_for('register') }}">Register</a> to start booking.</p>
+    {% endif %}
+  </section>
+{% endblock %}

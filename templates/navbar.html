@@ -1,0 +1,45 @@
+<nav class="navbar">
+  <ul>
+    <li><a href="{{ url_for('home') }}">🏠 Home</a></li>
+    <li><a href="{{ url_for('booking') }}">🧯 Book Cylinder</a></li>
+    <li><a href="{{ url_for('history') }}">📜 Booking History</a></li>
+    <li><a href="{{ url_for('contact') }}">📞 Contact Us</a></li>
+
+    {% if session.get('user_id') %}
+      <li><a href="{{ url_for('logout') }}">🚪 Logout</a></li>
+    {% else %}
+      <li><a href="{{ url_for('login') }}">🔐 Login</a></li>
+      <li><a href="{{ url_for('register') }}">📝 Register</a></li>
+    {% endif %}
+  </ul>
+</nav>
+
+<style>
+.navbar {
+  background-color: #0077cc;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.navbar li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.navbar a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+  color: #ffd700;
+}
+</style>

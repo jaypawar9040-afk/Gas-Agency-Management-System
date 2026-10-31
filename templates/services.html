@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Services - Smart Gas Agency{% endblock %}
+{% block content %}
+  <h2>Services & Cylinder Types</h2>
+  <ul class="services-list">
+    <li><strong>Domestic Cylinder</strong> — 14.2 kg standard</li>
+    <li><strong>Commercial Cylinder</strong> — 19 kg heavy-duty</li>
+    <li><strong>Refill / Exchange</strong> — Cylinder refill or exchange at your doorstep</li>
+    <li><strong>Emergency Delivery</strong> — Priority delivery (subject to availability)</li>
+  </ul>
+  <br>
+  <br>
+  <div class="cta-row">
+    <a class="btn" href="{{ url_for('booking') }}">Book Now</a>
+    <a class="btn" href="{{ url_for('contact') }}">Contact Support</a>
+  </div>
+{% endblock %}

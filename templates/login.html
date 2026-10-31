@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Login - Smart Gas Agency{% endblock %}
+
+{% block content %}
+  <h2>Login</h2>
+  <form id="loginForm" method="POST" action="{{ url_for('login') }}" novalidate>
+    <label for="name">Email</label>
+    <input type="text" id="name" name="name" placeholder="email@example.com " required>
+
+    <label for="password">Password (exactly 10 chars, include lower, upper & special)</label>
+    <input type="password" id="password" name="password" required>
+
+    <button type="submit">Login</button>
+  </form>
+
+  <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a>.</p>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function validateLogin() {
+  const name = document.getElementById("name").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  // Validate name: only characters allowed (for email/mobile you may skip this)
+  //const namePattern = /^[A-Za-z\s]+$/;
+  //if (!namePattern.test(name)) {
+    //alert("Name must contain only characters (A–Z or a–z).");
+    //return false;
+  }
+
+  // Validate password:
+  // 10 characters, at least one lowercase, one uppercase, one special character
+  const passPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{10}$/;
+  if (!passPattern.test(password)) {
+    alert("Password must be exactly 10 characters long, include upper, lower, and a special character.");
+    return false;
+  }
+
+  return true;
+
+
+// Attach validation on form submit
+document.getElementById('loginForm').addEventListener('submit', function(e){
+  if(!validateLogin()){
+    e.preventDefault();
+  }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Book Cylinder - Smart Gas Agency{% endblock %}
+{% block content %}
+  <h2>Place a New Booking</h2>
+
+  {% if not session.get('user_id') %}
+    <p>Please <a href="{{ url_for('login') }}">login</a> to place a booking.</p>
+  {% else %}
+    <form id="bookingForm" method="POST" action="{{ url_for('booking') }}">
+      <label for="cylinder_type">Cylinder Type</label>
+      <select id="cylinder_type" name="cylinder_type" required>
+        <option value="Domestic">Domestic - 14.2 kg</option>
+        <option value="Commercial">Commercial - 19 kg</option>
+        <option value="Refill">Refill / Exchange</option>
+      </select>
+
+      <label for="address">Delivery Address</label>
+      <textarea id="address" name="address" required>{{ user.address if user else '' }}</textarea>
+
+      <button type="submit">Place Booking</button>
+    </form>
+  {% endif %}
+{% endblock %}

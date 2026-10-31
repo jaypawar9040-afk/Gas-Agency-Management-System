@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Profile - Smart Gas Agency{% endblock %}
+{% block content %}
+  <h2>Your Profile</h2>
+
+  {% if not session.get('user_id') %}
+    <p>Please <a href="{{ url_for('login') }}">login</a>. </p>
+  {% else %}
+    <form id="profileForm" method="POST" action="{{ url_for('profile') }}">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" value="{{ user.name }}" required>
+
+      <label for="address">Address</label>
+      <input type="text" id="address" name="address" value="{{ user.address or '' }}">
+
+      <label for="mobile">Mobile</label>
+      <input type="text" id="mobile" name="mobile" value="{{ user.mobile }}" required>
+
+      <label for="pincode">Pincode</label>
+      <input type="text" id="pincode" name="pincode" value="{{ user.pincode or '' }}">
+
+      <button type="submit">Update Profile</button>
+    </form>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - Smart Gas Agency{% endblock %}
+
+{% block content %}
+  {% include 'navbar.html' %}
+
+  <!-- Flash message display -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}" 
+             style="background-color: #d4edda; color: #155724; padding: 10px; 
+                    border-radius: 5px; margin: 10px;">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  <br>
+  <div class="contact-container">
+    <h2>Contact Us</h2>
+    <form method="POST">
+      <label>Name:</label>
+      <input type="text" name="name" required>
+
+      <label>Email:</label>
+      <input type="email" name="email" required>
+
+      <label>Message:</label>
+      <textarea name="message" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+
+  <div class="contact-info">
+    <h4>Helpline</h4>
+    <p>Phone: 9021-423-880</p>
+    <p>Email: Jaypawar66@gmail.com</p>
+  </div>
+{% endblock %}

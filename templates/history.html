@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Booking History - Smart Gas Agency{% endblock %}
+{% block content %}
+  <h2>Your Booking History</h2>
+
+  {% if not session.get('user_id') %}
+    <p>Please <a href="{{ url_for('login') }}">login</a> to view bookings.</p>
+  {% else %}
+    {% if bookings %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Booking ID</th>
+            <th>Cylinder Type</th>
+            <th>Address</th>
+            <th>Status</th>
+            <th>Placed On</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for b in bookings %}
+            <tr>
+              <td>{{ b.id }}</td>
+              <td>{{ b.cylinder_type }}</td>
+              <td>{{ b.address }}</td>
+              <td>{{ b.status }}</td>
+              <td>{{ b.created_at.strftime('%Y-%m-%d %H:%M') if b.created_at else '-' }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <p><a href="{{ url_for('payment') }}">Make Payment</a></p>
+    {% else %}
+      <p>No bookings found. <a href="{{ url_for('booking') }}">Place one now</a>.</p>
+    {% endif %}
+  {% endif %}
+{% endblock %}
